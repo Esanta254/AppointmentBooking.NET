@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquityAfia.AppointmentsBookings.Api", "EquityAfia.AppointmentsBookings.Api\EquityAfia.AppointmentsBookings.Api.csproj", "{D2B65FC8-9888-41CE-B8A2-99BA5D471F05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquityAfia.AppointmentsBookings.Domain", "EquityAfia.AppointmentsBookings.Domain\EquityAfia.AppointmentsBookings.Domain.csproj", "{A7D80F2E-06B6-40BA-A58C-6A86BC43F56F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquityAfia.AppointmentsBookings.Application", "EquityAfia.AppointmentsBookings.Application\EquityAfia.AppointmentsBookings.Application.csproj", "{B2954EF9-C2D1-41BB-987A-7B6882C1333C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquityAfia.AppointmentsBookings.Infrastructure", "EquityAfia.AppointmentsBookings.Infrastructure\EquityAfia.AppointmentsBookings.Infrastructure.csproj", "{6BC3F593-6AC4-49E4-8E69-927E5DE7521F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquityAfia.AppointmentsBookings.Contracts", "EquityAfia.AppointmentsBookings.Contracts\EquityAfia.AppointmentsBookings.Contracts.csproj", "{3A2409D3-2C9F-4332-9A4F-47E958BF83F6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2B65FC8-9888-41CE-B8A2-99BA5D471F05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2B65FC8-9888-41CE-B8A2-99BA5D471F05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2B65FC8-9888-41CE-B8A2-99BA5D471F05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2B65FC8-9888-41CE-B8A2-99BA5D471F05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7D80F2E-06B6-40BA-A58C-6A86BC43F56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7D80F2E-06B6-40BA-A58C-6A86BC43F56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7D80F2E-06B6-40BA-A58C-6A86BC43F56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7D80F2E-06B6-40BA-A58C-6A86BC43F56F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2954EF9-C2D1-41BB-987A-7B6882C1333C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2954EF9-C2D1-41BB-987A-7B6882C1333C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2954EF9-C2D1-41BB-987A-7B6882C1333C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2954EF9-C2D1-41BB-987A-7B6882C1333C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6BC3F593-6AC4-49E4-8E69-927E5DE7521F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6BC3F593-6AC4-49E4-8E69-927E5DE7521F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6BC3F593-6AC4-49E4-8E69-927E5DE7521F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6BC3F593-6AC4-49E4-8E69-927E5DE7521F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A2409D3-2C9F-4332-9A4F-47E958BF83F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A2409D3-2C9F-4332-9A4F-47E958BF83F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A2409D3-2C9F-4332-9A4F-47E958BF83F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A2409D3-2C9F-4332-9A4F-47E958BF83F6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D2A62DB-D206-4264-B305-EBAF989AF4EC}
+	EndGlobalSection
+EndGlobal
