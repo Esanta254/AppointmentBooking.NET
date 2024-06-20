@@ -1,11 +1,29 @@
+
+
+
+using EquityAfia.AppointmentsBookings.Api.Controllers;
+using EquityAfia.AppointmentsBookings.Application;
+using EquityAfia.AppointmentsBookings.Domain.Interfaces;
+using EquityAfia.AppointmentsBookings.Infrastructure.Data;
+using EquityAfia.AppointmentsBookings.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DBCS"),
+                         b => b.MigrationsAssembly("EquityAfia.AppointmentsBookings.Infrastructure")));
+
+builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
+builder.Services.AddScoped<AppointmentService>();
+
+// Add GetAppointmentController
+//builder.Services.AddControllers().AddApplicationPart(typeof(GetAppointmentController).Assembly);
 
 var app = builder.Build();
 
@@ -17,9 +35,10 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
+
+
+
+

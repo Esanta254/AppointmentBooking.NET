@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EquityAfia.AppointmentsBookings.Contracts\EquityAfia.AppointmentsBookings.Contracts.csproj" />
+    <ProjectReference Include="..\EquityAfia.AppointmentsBookings.Domain\EquityAfia.AppointmentsBookings.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
