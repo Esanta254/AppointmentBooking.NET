@@ -1,5 +1,4 @@
 ﻿
-
 using EquityAfia.AppointmentsBookings.Domain.Entities;
 using EquityAfia.AppointmentsBookings.Domain.Interfaces;
 using EquityAfia.AppointmentsBookings.Infrastructure.Data;

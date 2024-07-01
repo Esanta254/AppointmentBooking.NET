@@ -1,6 +1,4 @@
 
-
-
 using EquityAfia.AppointmentsBookings.Api.Controllers;
 using EquityAfia.AppointmentsBookings.Application;
 using EquityAfia.AppointmentsBookings.Domain.Interfaces;
@@ -22,8 +20,6 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
 builder.Services.AddScoped<AppointmentService>();
 
-// Add GetAppointmentController
-//builder.Services.AddControllers().AddApplicationPart(typeof(GetAppointmentController).Assembly);
 
 var app = builder.Build();
 

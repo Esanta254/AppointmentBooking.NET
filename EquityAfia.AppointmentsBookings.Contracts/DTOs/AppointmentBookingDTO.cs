@@ -2,7 +2,6 @@
 {
     public class AppointmentBookingDTO
     {
-        //public string AppointmentId { get; set; }
         public string BookFor { get; set; }
         public string Service { get; set; }
         public DateTime Date { get; set; }
