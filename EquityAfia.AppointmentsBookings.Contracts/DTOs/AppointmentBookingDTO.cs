@@ -2,14 +2,14 @@
 {
     public class AppointmentBookingDTO
     {
-        public string BookFor { get; set; }
-        public string Service { get; set; }
+        public string BookFor { get; set; } = null!;
+        public string Service { get; set; } = null!;
         public DateTime Date { get; set; }
-        public string AppointmentType { get; set; }
-        public string FullName { get; set; }
-        public string PhoneNumber { get; set; }
-        public string IdNumber { get; set; }
-        public string Gender { get; set; }
+        public string AppointmentType { get; set; } = null!;
+        public string FullName { get; set; } = null!;
+        public string PhoneNumber { get; set; } = null!;
+        public string IdNumber { get; set; } = null!;
+        public string Gender { get; set; } = null!;
         public int Age { get; set; }
     }
 }

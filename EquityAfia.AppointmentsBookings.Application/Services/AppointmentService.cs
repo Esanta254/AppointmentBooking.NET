@@ -1,12 +1,13 @@
 ﻿
-
+/*
+using EquityAfia.AppointmentsBookings.Contracts.Interfaces;
 using EquityAfia.AppointmentsBookings.Domain.Entities;
 using EquityAfia.AppointmentsBookings.Domain.Interfaces;
-using System.Threading.Tasks;
 
-namespace EquityAfia.AppointmentsBookings.Application
+
+namespace EquityAfia.AppointmentsBookings.Application.Services
 {
-    public class AppointmentService
+    public class AppointmentService : IAppointmentService
     {
         private readonly IAppointmentRepository _appointmentRepository;
 
@@ -15,21 +16,110 @@ namespace EquityAfia.AppointmentsBookings.Application
             _appointmentRepository = appointmentRepository;
         }
 
-        public Task CreateAppointment(AppointmentBooking appointmentBooking)
+        public async Task CreateAppointmentAsync(AppointmentBooking appointmentBooking)
         {
-            // Add any business logic or validation here if needed
-            return _appointmentRepository.AddAsync(appointmentBooking);
+            await _appointmentRepository.AddAsync(appointmentBooking);
         }
-
-        public Task<IEnumerable<AppointmentBooking>> GetAllAppointments()
+        public async Task<IEnumerable<AppointmentBooking>> GetAllAppointmentsAsync()
         {
-            return _appointmentRepository.GetAllAppointments();
+            return await _appointmentRepository.GetAllAppointmentsAsync();
         }
-
-        public Task<AppointmentBooking> GetAppointmentById(string id)
+        public async Task<AppointmentBooking> GetAppointmentByIdAsync(string AppointmentId)
         {
-            return _appointmentRepository.GetAppointmentById(id);
+            return await _appointmentRepository.GetAppointmentByIdAsync(AppointmentId);
+        }
+        public async Task UpdateAppointmentAsync(AppointmentBooking appointmentBooking)
+        {
+            await _appointmentRepository.UpdateAsync(appointmentBooking);
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetApprovedAppointmentsAsync()
+        {
+            return await _appointmentRepository.GetApprovedAppointmentsAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetPendingAppointmentsAsync()
+        {
+            return await _appointmentRepository.GetPendingAppointmentsAsync();
         }
     }
 }
 
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using EquityAfia.AppointmentsBookings.Contracts.Interfaces;
+using EquityAfia.AppointmentsBookings.Domain.Entities;
+using EquityAfia.AppointmentsBookings.Domain.Interfaces;
+
+
+namespace EquityAfia.AppointmentsBookings.Application.Services
+{
+    public class AppointmentService : IAppointmentService
+    {
+        private readonly IAppointmentRepository _appointmentRepository;
+        public AppointmentService(IAppointmentRepository appointmentRepository)
+        {
+            _appointmentRepository = appointmentRepository;
+        }
+
+        public async Task CreateAppointmentAsync(AppointmentBooking appointmentBooking)
+        {
+            await _appointmentRepository.AddAsync(appointmentBooking);
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetAllAppointmentsAsync()
+        {
+            return await _appointmentRepository.GetAllAppointmentsAsync();
+        }
+        public async Task<AppointmentBooking> GetAppointmentByIdAsync(string AppointmentId)
+        {
+            return await _appointmentRepository.GetAppointmentByIdAsync(AppointmentId);
+        }
+        public async Task UpdateAppointmentAsync(AppointmentBooking appointmentBooking)
+        {
+            await _appointmentRepository.UpdateAsync(appointmentBooking);
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetApprovedAppointmentsAsync()
+        {
+            return await _appointmentRepository.GetApprovedAppointmentsAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetPendingAppointmentsAsync()
+        {
+            return await _appointmentRepository.GetPendingAppointmentsAsync();
+        }
+    }
+}

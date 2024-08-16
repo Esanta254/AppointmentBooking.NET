@@ -1,39 +1,156 @@
-﻿
+﻿/*
 using EquityAfia.AppointmentsBookings.Domain.Entities;
 using EquityAfia.AppointmentsBookings.Domain.Interfaces;
 using EquityAfia.AppointmentsBookings.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+
 
 namespace EquityAfia.AppointmentsBookings.Infrastructure.Repositories
 {
     public class AppointmentRepository : IAppointmentRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly AppDbContext _context;
 
-        public AppointmentRepository(AppDbContext dbContext)
+        public AppointmentRepository(AppDbContext context)
         {
-            _dbContext = dbContext;
+            _context = context;
+        }
+        
+        public async Task AddAsync(AppointmentBooking appointmentBooking)
+        {
+            await _context.AppointmentBookings.AddAsync(appointmentBooking);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetAllAppointmentsAsync()
+        {
+            return await _context.AppointmentBookings.ToListAsync();
+        }
+        public async Task<AppointmentBooking> GetAppointmentByIdAsync(string AppointmentId)
+        {
+            var appointment = await _context.AppointmentBookings.FindAsync(AppointmentId);
+            return appointment ?? throw new KeyNotFoundException("Appointment Not Found");
+        }
+        public async Task UpdateAsync(AppointmentBooking appointmentBooking)
+        {
+            _context.AppointmentBookings.Update(appointmentBooking);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetApprovedAppointmentsAsync()
+        {
+            return await _context.AppointmentBookings
+                .Where(appointment => appointment.Status == "Approved")
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetPendingAppointmentsAsync()
+        {
+            return await _context.AppointmentBookings
+                .Where(appointment => appointment.Status == "Pending")
+                .ToListAsync();
+        }
+    }
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+using EquityAfia.AppointmentsBookings.Domain.Entities;
+using EquityAfia.AppointmentsBookings.Domain.Interfaces;
+using EquityAfia.AppointmentsBookings.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
+
+
+namespace EquityAfia.AppointmentsBookings.Infrastructure.Repositories
+{
+    public class AppointmentRepository : IAppointmentRepository
+    {
+        private readonly AppDbContext _context;
+        public AppointmentRepository(AppDbContext context)
+        {
+            _context = context;
         }
 
         public async Task AddAsync(AppointmentBooking appointmentBooking)
         {
-            await _dbContext.AppointmentBookings.AddAsync(appointmentBooking);
-            await _dbContext.SaveChangesAsync();
+            await _context.AppointmentBookings.AddAsync(appointmentBooking);
+            await _context.SaveChangesAsync();
         }
-
-        public async Task<IEnumerable<AppointmentBooking>> GetAllAppointments()
+        public async Task<IEnumerable<AppointmentBooking>> GetAllAppointmentsAsync()
         {
-            return await _dbContext.AppointmentBookings.ToListAsync();
+            return await _context.AppointmentBookings.ToListAsync();
         }
-
-        public async Task<AppointmentBooking> GetAppointmentById(string id)
+        public async Task<AppointmentBooking> GetAppointmentByIdAsync(string AppointmentId)
         {
-            return await _dbContext.AppointmentBookings
-                                   .FirstOrDefaultAsync(a => a.AppointmentId == id);
+            var appointment = await _context.AppointmentBookings.FindAsync(AppointmentId);
+            return appointment ?? throw new KeyNotFoundException("Appointment not found");
+        }
+        public async Task UpdateAsync(AppointmentBooking appointmentBooking)
+        {
+            _context.AppointmentBookings.Update(appointmentBooking);
+            await _context.SaveChangesAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetApprovedAppointmentsAsync()
+        {
+            return await _context.AppointmentBookings
+                .Where(appointment => appointment.Status == "Approved")
+                .ToListAsync();
+        }
+        public async Task<IEnumerable<AppointmentBooking>> GetPendingAppointmentsAsync()
+        {
+            return await _context.AppointmentBookings
+                .Where(appointment => appointment.Status == "Pending ")
+                .ToListAsync();
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
