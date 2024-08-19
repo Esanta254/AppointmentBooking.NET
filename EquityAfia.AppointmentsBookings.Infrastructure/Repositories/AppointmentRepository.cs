@@ -125,13 +125,13 @@ namespace EquityAfia.AppointmentsBookings.Infrastructure.Repositories
         public async Task<IEnumerable<AppointmentBooking>> GetApprovedAppointmentsAsync()
         {
             return await _context.AppointmentBookings
-                .Where(appointment => appointment.Status == "Approved")
+                .Where(appointment => appointment.AppointmentStatus == "Approved")
                 .ToListAsync();
         }
         public async Task<IEnumerable<AppointmentBooking>> GetPendingAppointmentsAsync()
         {
             return await _context.AppointmentBookings
-                .Where(appointment => appointment.Status == "Pending ")
+                .Where(appointment => appointment.AppointmentStatus == "Pending ")
                 .ToListAsync();
         }
     }
