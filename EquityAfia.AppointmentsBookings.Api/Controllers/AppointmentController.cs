@@ -1,7 +1,9 @@
 ﻿
 
+using EquityAfia.AppointmentsBookings.Contracts.DTOs;
 using EquityAfia.AppointmentsBookings.Contracts.Interfaces;
 using EquityAfia.AppointmentsBookings.Domain.Entities;
+using EquityAfia.AppointmentsBookings.Application.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Any;
 
@@ -12,10 +14,12 @@ namespace EquityAfia.AppointmentsBookings.Api.Controllers
     public class AppointmentController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly IEmailService _emailService;
 
-        public AppointmentController(IAppointmentService appointmentService)
+        public AppointmentController(IAppointmentService appointmentService, IEmailService emailService)
         {
             _appointmentService = appointmentService;
+            _emailService = emailService;
         }
 
         //Book appointment Endpoint 
@@ -26,24 +30,39 @@ namespace EquityAfia.AppointmentsBookings.Api.Controllers
            
             try
             {
+                if (dto == null)
+                {
+                    return BadRequest(new { Message = "DTO cannot be null." });
+                }
                 // Generate a unique appointment ID starting with 'A' followed by 6 digits
                 var appointmentId = GenerateAppointmentId();
 
                 var appointmentBooking = new AppointmentBooking
                 {
                     AppointmentId = appointmentId,
+                    IdNumber = dto.IdNumber,
                     BookFor = dto.BookFor,
                     Service = dto.Service,
-                    Date = dto.Date,
                     AppointmentType = dto.AppointmentType,
-                    FullName = dto.FullName,
+                    Name = dto.Name,
                     PhoneNumber = dto.PhoneNumber,
-                    IdNumber = dto.IdNumber,
+                    Email = dto.Email,
+                    Age = dto.Age,                
                     Gender = dto.Gender,
-                    Age = dto.Age
+                    Residence = dto.Residence,
+                    AppointmentDate = dto.AppointmentDate,
+                    AppointmentTime = dto.AppointmentTime
+
                 };
 
                 await _appointmentService.CreateAppointmentAsync(appointmentBooking);
+                var emailDto = new EmailDto
+                {
+                    To = dto.Email,
+                    Subject = "Appointment Booking Confirmation",
+                    Body = $"Your appointment has been successfully booked with ID: {appointmentId}."
+                };
+                await _emailService.SendEmailAsync(emailDto);
 
                 return Ok(new { Message = "Appointment created successfully" });
             }
@@ -130,12 +149,12 @@ namespace EquityAfia.AppointmentsBookings.Api.Controllers
                     return NotFound(new { Message = "Appointment not found" });
                 }
 
-                if (appointment.Status == "approved")
+                if (appointment.AppointmentStatus == "approved")
                 {
                     return BadRequest(new { Message = "Appointment is already approved" });
                 }
 
-                appointment.Status = "approved";
+                appointment.AppointmentStatus = "approved";
                 await _appointmentService.UpdateAppointmentAsync(appointment);
 
                 return Ok(new
